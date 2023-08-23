@@ -1,9 +1,20 @@
 import React from 'react';
 import logo from './logo.svg';
-import '../css/App.css';
+import '../../css/App.css';
+
+export enum ChartType {
+  Pie,
+  Bar
+}
+
+export enum ChartData {
+  Pie,
+  Bar
+}
 
 interface IChartProp {
     name : String,
+    type: ChartType,
     data: any | undefined,
     props: any,
     children: React.ReactNode;

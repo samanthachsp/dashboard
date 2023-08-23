@@ -24,4 +24,6 @@
 .content {
   width: 80%;
   height: 100vh;
+  flex-direction: row;
+  display: flex;
 }
