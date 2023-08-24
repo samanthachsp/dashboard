@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
-import '../../css/App.css';
+import '../../css/Chart.css';
+import { Pie, Bar } from 'react-chartjs-2';
 
 export enum ChartType {
   Pie,
@@ -16,14 +17,16 @@ interface IChartProp {
     name : String,
     type: ChartType,
     data: any | undefined,
-    props: any,
+    options: any,
     children: React.ReactNode;
 }
 
 const DashboardChart = (prop: IChartProp) => {
+  const {name, type, data, options} = prop
   return (
     <div className="chart">
-        {prop.children}
+        {type == ChartType.Pie &&<Pie options={options} data={data} />}
+        {type == ChartType.Bar &&<Bar options={options} data={data} height="350px" />}
     </div>
   );
 }

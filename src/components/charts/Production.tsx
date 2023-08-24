@@ -11,7 +11,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import '../../css/App.css';
 import DashboardChart, { ChartType } from './Chart';
-
+import { useSelector } from 'react-redux';
 
 
 ChartJS.register(
@@ -57,10 +57,10 @@ const Production = () => {
   return (
     <DashboardChart 
         name="Chart A" 
-        type={ChartType.Pie}
-        data={{}} 
-        props={{}}>
-        <Bar options={options} data={data} height="400px" />
+        type={ChartType.Bar}
+        data={data} 
+        options={options}>
+        
     </DashboardChart> 
 );
 }

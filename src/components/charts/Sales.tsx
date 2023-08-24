@@ -2,6 +2,7 @@ import React from 'react';
 import { Pie } from 'react-chartjs-2';
 import '../../css/App.css';
 import DashboardChart, { ChartType } from './Chart';
+import { useSelector } from 'react-redux';
 
 export const options = {
   responsive: true,
@@ -48,9 +49,8 @@ const Sales = () => {
     <DashboardChart 
         name="Chart A" 
         type={ChartType.Pie}
-        data={{}} 
-        props={{}}>
-        <Pie options={options} data={data} height="100"/>
+        data={data} 
+        options={options}>
     </DashboardChart> 
 );
 }
