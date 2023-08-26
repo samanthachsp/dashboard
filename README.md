@@ -1,6 +1,6 @@
 # Getting Started
 
-This project can be sstarted with below steps.
+This dashboard can be started with the below steps.
 
 ## Available Scripts
 
