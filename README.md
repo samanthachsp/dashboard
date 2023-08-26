@@ -6,6 +6,10 @@ This project can be sstarted with below steps.
 
 In the project directory, you can run:
 
+### `npm install`
+
+To install the libraries.
+
 ### `npm start`
 
 Runs the app in the development mode.\
@@ -14,7 +18,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ### Start Backend services
 
-* Checkout the code from - https://github.com/samanthachsp/dashboard-backend.
+* Please checkout the code from - https://github.com/samanthachsp/dashboard-backend.
 * Refer to the readme file to start the services
 
 ### Login
