@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './css/App.css';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
 import DashboardChart, { ChartType } from './components/charts/Chart';
-import Invoices from './components/charts/Invoices';
+import ProductionItems from './components/charts/ProductionItems';
 import Production from './components/charts/Production';
 import Sales from './components/charts/Sales';
 import Filter from './containers/Filter';
@@ -19,10 +19,20 @@ ChartJS.register(ArcElement, Tooltip, Legend);
 
 
 const App = () => {
-  const login = useSelector(getLogin)
-  console.log(login)
+  const loginStatus = useSelector(getLogin)
+  const error = useSelector((state: any) => state.sales?.error)
+  const [ status , setStatus]  = useState('')
+
+  useEffect(() => {
+    console.log(loginStatus)
+    if(loginStatus.status === 'failed') {
+      setStatus('You are not authorized')
+    }
+  }, [loginStatus])
+
+  // console.log(loginStatus)
   return (
-    login.userName !== '' ? 
+    loginStatus.token !== '' ? 
     <div className="dashboard">
       <div className="filter">
         <Filter/>
@@ -32,10 +42,10 @@ const App = () => {
         <div className="content">
           <Sales/>
           <Production/>
-          <Invoices/>
+          <ProductionItems/>
         </div>
       </div>
-    </div>: <Login/>
+    </div>: <Login message={status}/>
   );
 }
 

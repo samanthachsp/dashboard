@@ -20,23 +20,19 @@ const Filter = () => {
 //   const filter = useSelector((state: any) => state)
 //   console.log(filter)
   return (
+    <div className="filter-container">
+    <FormatAlignCenterIcon className="filter-icon"/>
     <div className="filter-form">
-        <FormatAlignCenterIcon className="filter-icon"/>
-        <Box
-        component="form"
-        sx={{
-            '& > :not(style)': { m: 1, width: '25ch' },
-        }}
-        noValidate
-        autoComplete="off"
-        >
-        <TextField id="outlined-basic" label="Year" variant="outlined" value={year} onChange={(event) => setYear(event.target.value)} />
-        <TextField id="outlined-basic" label="Month" variant="outlined" value={month} onChange={(event) => setMonth(event.target.value)} />
-                <Button variant="contained" endIcon={<FilterAltIcon />} onClick={(event) => {event.preventDefault(); dispatch(filterByYearMonth({year: year, month: month})); }}>
+
+
+        <TextField className="text" id="outlined-basic" label="Year" variant="outlined" value={year} onChange={(event) => setYear(event.target.value)} />
+        <TextField className="text" id="outlined-basic" label="Month" variant="outlined" value={month} onChange={(event) => setMonth(event.target.value)} />
+                <Button className="button"  variant="contained" endIcon={<FilterAltIcon />} onClick={(event) => {event.preventDefault(); dispatch(filterByYearMonth({year: year, month: month})); }}>
                 Apply
                 </Button>
 
-    </Box>
+
+    </div>
     </div>
   );
 }

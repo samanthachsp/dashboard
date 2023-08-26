@@ -2,6 +2,8 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    align-items: center;
+    width: 100%;
 }
 
 .filter-label {
@@ -15,5 +17,19 @@
 }
 
 .filter-icon {
-    margin: 20px 40px;
+    margin: 22px 0px !important;
 }
+.filer-container {
+    text-align: right !important;
+}
+
+.filter {
+    margin: 0px 10px;
+    width: 20%;
+    /* background-color: green; */
+    height: 100vh;
+    /* display: flex; */
+    align-items: flex-start;
+    margin: auto;
+    text-align: right;
+  }

@@ -1,28 +1,50 @@
-import React from 'react';
-import { Pie } from 'react-chartjs-2';
+import React, { useEffect } from 'react';
 import '../../css/App.css';
 import DashboardChart, { ChartType } from './Chart';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilter } from '../../app/reducers/filter';
+import { fetchSales, getSales, getSalesStatus } from '../../app/reducers/sales';
 
 export const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top' as const,
+    responsive: true,
+    plugins: {
+      legend: {
+        position: 'top' as const,
+      },
+      title: {
+        display: true,
+        text: 'Sales',
+      },
     },
-    title: {
-      display: true,
-      text: 'Sales',
-    },
-  },
-};
+  };
 
-export const data = {
-    labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+const Sales = () => {
+  const dispatch = useDispatch<any>()
+  const sales = useSelector(getSales)
+  const filter = useSelector(getFilter)
+  const salesStatus = useSelector(getSalesStatus)
+  const error = useSelector((state: any) => state.sales?.error)
+
+  useEffect(() => {
+    // console.log('sales,filter, salesStatus -> ' ,filter, salesStatus)
+    //succeeded
+    // if (salesStatus === 'idle' || salesStatus === 'failed') {
+      dispatch(fetchSales(filter))
+    // }
+  }, [filter, dispatch])
+  // console.log('sales -> ' ,sales?.sales)
+  const req1 = sales?.sales?.filter((req: any) => req.skNo === '111').reduce((total: number, sale: any) => { return total + sale.amount }, 0)
+  const req2 = sales?.sales?.filter((req: any) => req.skNo === '121').reduce((total: number, sale: any) => { return total + sale.amount }, 0)
+  const req3 = sales?.sales?.filter((req: any) => req.skNo === '151').reduce((total: number, sale: any) => { return total + sale.amount }, 0)
+  const req4= sales?.sales?.filter((req: any) => req.skNo === '221').reduce((total: number, sale: any) => { return total + sale.amount }, 0)
+  const req5 = sales?.sales?.filter((req: any) => req.skNo === '112').reduce((total: number, sale: any) => { return total + sale.amount }, 0)
+  const req6 = sales?.sales?.filter((req: any) => req.skNo === '222').reduce((total: number, sale: any) => { return total + sale.amount }, 0)
+  const data = {
+    labels: ['SK 111', 'SK 121', 'SK 151', 'SK 221', 'SK 112', 'SK 222'],
     datasets: [
       {
         label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        data: [req1, req2, req3, req4, req5, req6],
         backgroundColor: [
           'rgba(255, 99, 132, 0.2)',
           'rgba(54, 162, 235, 0.2)',
@@ -43,16 +65,15 @@ export const data = {
       },
     ],
   };
-
-const Sales = () => {
+  
   return (
-    <DashboardChart 
-        name="Chart A" 
-        type={ChartType.Pie}
-        data={data} 
-        options={options}>
-    </DashboardChart> 
-);
+        <DashboardChart 
+            name="Chart A" 
+            type={ChartType.Pie}
+            data={data ? data : []} 
+            options={options}>
+        </DashboardChart> 
+  );
 }
 
 export default Sales;
